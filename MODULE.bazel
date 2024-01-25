@@ -1,0 +1,31 @@
+"""
+A Bazel module is a Bazel project that can have multiple versions, each of which publishes
+metadata about other modules that it depends on.
+This is analogous to familiar concepts in other dependency management systems, such as a
+Maven artifact, an npm package, a Go module, or a Cargo crate.
+"""
+bazel_dep(name = "rules_swift", version = "1.15.1", repo_name = "build_bazel_rules_swift")
+bazel_dep(name = "rules_apple", version = "3.1.1", repo_name = "build_bazel_rules_apple")
+bazel_dep(name = "apple_support", version = "1.11.1")
+
+non_module_deps = use_extension("@build_bazel_rules_swift//swift:extensions.bzl", "non_module_deps")
+
+bazel_dep(name = "cgrindel_bazel_starlib", version = "0.19.0")
+bazel_dep(name = "bazel_skylib", version = "1.5.0")
+bazel_dep(name = "bazel_skylib_gazelle_plugin", version = "1.5.0", dev_dependency = True)
+bazel_dep(name = "rules_swift_package_manager", version = "0.25.0")
+bazel_dep(name = "gazelle", repo_name = "bazel_gazelle", version = "0.35.0")
+
+# swift_deps START
+swift_deps = use_extension(
+    "@rules_swift_package_manager//:extensions.bzl",
+    "swift_deps",
+)
+swift_deps.from_file(
+    deps_index = "//Apps/MyCoolApp/Modules/MyCoolAppLibrary:deps_index.json",
+)
+use_repo(
+    swift_deps,
+    "swiftpkg_notthatamazingmodule",
+)
+# swift_deps END

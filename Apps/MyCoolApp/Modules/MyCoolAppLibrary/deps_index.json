@@ -1,0 +1,36 @@
+{
+  "direct_dep_identities": [
+    "notthatamazingmodule"
+  ],
+  "modules": [
+    {
+      "name": "NotThatAmazingModule",
+      "c99name": "NotThatAmazingModule",
+      "src_type": "swift",
+      "label": "@swiftpkg_notthatamazingmodule//:Sources_NotThatAmazingModule",
+      "package_identity": "notthatamazingmodule",
+      "product_memberships": [
+        "NotThatAmazingModule"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "identity": "notthatamazingmodule",
+      "name": "NotThatAmazingModule",
+      "type": "library",
+      "target_labels": [
+        "@swiftpkg_notthatamazingmodule//:Sources_NotThatAmazingModule"
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "name": "swiftpkg_notthatamazingmodule",
+      "identity": "notthatamazingmodule",
+      "local": {
+        "path": "../../../../Modules/NotThatAmazingModule"
+      }
+    }
+  ]
+}
